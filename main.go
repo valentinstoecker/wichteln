@@ -22,15 +22,6 @@ func has_id(es []entry, b byte) bool {
 	return false
 }
 
-func has_name(es []entry, name string) bool {
-	for _, e := range es {
-		if e.name == name {
-			return true
-		}
-	}
-	return false
-}
-
 func permutate_rand(es []entry) []entry {
 	es_copy := make([]entry, len(es))
 	copy(es_copy, es)
@@ -73,7 +64,7 @@ func main() {
 		w.Write(obs)
 	})
 
-	http.HandleFunc("/result", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/result", func(w http.ResponseWriter, _ *http.Request) {
 		es := permutate_rand(objs)
 		es_copy := make([]entry, len(es))
 		copy(es_copy, es)
